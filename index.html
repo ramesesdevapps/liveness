@@ -51,6 +51,7 @@
           })
           .then((data) => {
             console.log("Liveness SDK result:", data); // Add this line
+            alert(JSON.stringify(data));
             document.body.innerHTML = "";
 
             const div = document.createElement("div");
