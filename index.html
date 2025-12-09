@@ -71,6 +71,7 @@ window.parent.postMessage(
             }
           })
           .catch((err) => {
+                alert("SDK error: " + JSON.stringify(err));
             console.error("error", err);
             document.getElementById("status").innerText =
               "Liveness check failed.";
