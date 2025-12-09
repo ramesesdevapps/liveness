@@ -63,10 +63,10 @@
             }
             
             if (window.parent) {
-              window.parent.postMessage(
-                { type: "LIVENESS_COMPLETE", sessionId: data.session_id },
-                "*"
-              );
+window.parent.postMessage(
+  { type: "LIVENESS_COMPLETE", sessionId: data.session_id || data.sessionId || data.id || data.token },
+  "*"
+);
             }
           })
           .catch((err) => {
