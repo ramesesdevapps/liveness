@@ -50,6 +50,7 @@
               "eyJpdiI6IlZEZy9TaXM2aGpHOFpVejh4bGFDTmc9PSIsInZhbHVlIjoiYkRxMi9xaUJGNnJ2RHJLNGNZdlhSdz09IiwibWFjIjoiMzhhMGNlM2FjN2RmNjc5MjU0YTI0NzY5NTcxMDVjYTJmOGI5NGVhODU1Mzc5YWNiZWM2NTk0NzEzNGZiMGRmYSIsInRhZyI6IiJ9",
           })
           .then((data) => {
+            console.log("Liveness SDK result:", data); // Add this line
             document.body.innerHTML = "";
 
             const div = document.createElement("div");
@@ -60,12 +61,13 @@
             if (window.ReactNativeWebView) {
               window.ReactNativeWebView.postMessage(JSON.stringify(data));
             }
+            
             if (window.parent) {
-    window.parent.postMessage(
-      { type: "LIVENESS_COMPLETE", sessionId: data.session_id },
-      "*"
-    );
-  }
+              window.parent.postMessage(
+                { type: "LIVENESS_COMPLETE", sessionId: data.session_id },
+                "*"
+              );
+            }
           })
           .catch((err) => {
             console.error("error", err);
