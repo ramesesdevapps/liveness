@@ -51,7 +51,7 @@
           })
           .then((data) => {
             console.log("Liveness SDK result:", data); // Add this line
-            alert(JSON.stringify(data).substring(0, 50) + "...");
+            alert(JSON.stringify(data).substring(0, 10) + "...");
 
             const div = document.createElement("div");
             div.id = "status";
@@ -61,13 +61,12 @@
             if (window.ReactNativeWebView) {
               window.ReactNativeWebView.postMessage(JSON.stringify(data));
             }
-
-            let result = typeof data.result === "string" ? JSON.parse(data.result) : data.result;
+            
             if (window.parent) {
-            window.parent.postMessage(
-              { type: "LIVENESS_COMPLETE", sessionId: result.session_id },
-              "*"
-            );
+window.parent.postMessage(
+  { type: "LIVENESS_COMPLETE", sessionId: data.session_id },
+  "*"
+);
             }
           })
           .catch((err) => {
