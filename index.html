@@ -66,7 +66,7 @@
           let result = typeof data.result === "string" ? JSON.parse(data.result) : data.result;
             if (window.top) {
               window.top.postMessage(
-                { type: "LIVENESS_COMPLETE", sessionId: result.session_id },
+                { type: "LIVENESS_COMPLETE", sessionId: result.session_id, data:result },
                 "*"
               );
           }
